@@ -13,6 +13,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import InputGroup from "react-bootstrap/InputGroup";
+import { GrUpdate } from "react-icons/gr";
 
 import * as MultipleArbitrableTransactionWithFee from "./ethereum/multiple-arbitrable-transaction-with-fee";
 import * as MultipleArbitrableTokenTransactionWithFee from "./ethereum/multiple-arbitrable-token-transaction-with-fee";
@@ -649,7 +650,184 @@ class Interact extends React.Component {
               </div>
             </Col>
           </Row>
+          <Row className="interact-body">
+            <Col xs={3} className="party">
+              <p className="role">PAYER</p>
+              <img src="user.svg"></img>
+              <p class="address">{payer}</p>
+              {activeAddress === payer.toLowerCase() && (
+                <img src="you.svg" className="you" />
+              )}
+            </Col>
+            <Col xs={6} className="transaction">
+              <ListGroup variant="flush">
+                <ListGroup.Item variant="primary" className="status">
+                  <Button
+                    type="button"
+                    className="update-status"
+                    onClick={this.updateBadges}
+                  >
+                    <GrUpdate color="#5feb9b" />
+                  </Button>
+                  <span className="label">STATUS: </span>
+                  <span className="verbose">{statusVerbose}</span>
+                  {statusVerbose == null && (
+                    <p className="no-status">
+                      First choose or create a transaction
+                    </p>
+                  )}
+                </ListGroup.Item>
+                <ListGroup.Item variant="info" className="suggestion">
+                  <p className="title">What should I do?</p>
+                  <h5>{actionHint.title}</h5>
+                  <p>{actionHint.body}</p>
+                  {payments.length > 0 && (
+                    <div>
+                      <p className="title">Payments</p>
+                      <ul>
+                        {payments.map((e) => (
+                          <li
+                            key={e.returnValues[0]}
+                          >{`${e.returnValues._party} paid ${e.returnValues._amount} ${coinVerbose}`}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {value != 0 && (
+                    <div id="buttons">
+                      <ButtonGroup className="mt-3" style={{ width: "100%" }}>
+                        {activeAddress === payer.toLowerCase() &&
+                          parseInt(status) === 0 && (
+                            <Button
+                              className="mr-2"
+                              variant="success"
+                              type="button"
+                              onClick={this.onPayButtonClick}
+                            >
+                              Pay
+                            </Button>
+                          )}
+                        {activeAddress === payee.toLowerCase() &&
+                          parseInt(status) === 0 && (
+                            <Button
+                              className="mr-2"
+                              variant="warning"
+                              type="button"
+                              onClick={this.onReimburseButtonClick}
+                            >
+                              Reimburse
+                            </Button>
+                          )}
+                        {activeAddress === payer.toLowerCase() &&
+                          (parseInt(status) === 0 ||
+                            (parseInt(status) === 1 &&
+                              Date.now() < feeDepositLimit)) && (
+                            <Button
+                              className="mr-2"
+                              variant="success"
+                              type="button"
+                              onClick={this.onReclaimBySenderFundsButtonClick}
+                            >
+                              Reclaim
+                            </Button>
+                          )}
+                        {activeAddress === payer.toLowerCase() &&
+                          parseInt(status) === 2 &&
+                          Date.now() > feeDepositLimit && (
+                            <Button
+                              className="mr-2"
+                              variant="success"
+                              type="button"
+                              onClick={this.onTimeOutBySenderButtonClick}
+                            >
+                              Get funds
+                            </Button>
+                          )}
+                      </ButtonGroup>
+                      <ButtonGroup className="mt-3" style={{ width: "100%" }}>
+                        {activeAddress === payee.toLowerCase() &&
+                          (parseInt(status) === 0 ||
+                            (parseInt(status) === 2 &&
+                              Date.now() < feeDepositLimit)) && (
+                            <Button
+                              className="mr-2"
+                              variant="danger"
+                              type="button"
+                              onClick={this.onReclaimByReceiverFundsButtonClick}
+                            >
+                              Reclaim
+                            </Button>
+                          )}
+                        {activeAddress === payee.toLowerCase() &&
+                          parseInt(status) === 1 &&
+                          Date.now() > feeDepositLimit && (
+                            <Button
+                              className="mr-2"
+                              variant="success"
+                              type="button"
+                              onClick={this.onTimeOutByReceiverButtonClick}
+                            >
+                              Get funds
+                            </Button>
+                          )}
+                      </ButtonGroup>
+                      {(parseInt(status) === 1 ||
+                        parseInt(status) === 2 ||
+                        parseInt(status) === 3) && (
+                        <InputGroup className="mt-3">
+                          <h6>
+                            You may submit evidence to backup your claim, for
+                            consideration of the jurors.
+                          </h6>
+                          <div className="input-group">
+                            <div className="custom-file">
+                              <input
+                                type="file"
+                                className="custom-file-input"
+                                id="inputGroupFile04"
+                                onInput={this.onInput}
+                              />
+                              <label
+                                className="text-left custom-file-label"
+                                htmlFor="inputGroupFile04"
+                              >
+                                {(fileInput && fileInput.name) ||
+                                  "Choose evidence file"}
+                              </label>
+                            </div>
+                            <div className="input-group-append">
+                              <button
+                                className="btn btn-primary"
+                                type="button"
+                                onClick={this.onSubmitButtonClick}
+                              >
+                                Submit
+                              </button>
+                            </div>
+                          </div>
+                        </InputGroup>
+                      )}
+                    </div>
+                  )}
+                </ListGroup.Item>
+                <ListGroup.Item className="powered-by">
+                  POWERED BY
+                  <img src="kleros-logo.png" className="kleros-logo" />
+                </ListGroup.Item>
+              </ListGroup>
+            </Col>
+            <Col xs={3} className="party">
+              <p className="role">PAYEE</p>
+              <img src="user.svg"></img>
+              <p class="address">{payee}</p>
+              {activeAddress === payee.toLowerCase() && (
+                <img src="you.svg" className="you" />
+              )}
+            </Col>
+          </Row>
         </Container>
+
         <Card
           className="h-100 my-4 text-center interact-card"
           style={{ width: "auto" }}

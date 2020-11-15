@@ -1,4 +1,4 @@
-@import 'custom';
+@import "custom";
 
 .interact {
   h3 {
@@ -6,12 +6,21 @@
     font-weight: bold;
   }
 
+  img {
+    width: 80px;
+  }
+
   .interact-div {
     .interact-header {
       padding: 1.5rem;
+      margin: 0.25rem 0.25rem;
       border: 1px solid $defiant-green;
       border-radius: 10px;
       font-weight: bold;
+
+      img {
+        margin-right: 15px;
+      }
 
       .value,
       .arbitrator {
@@ -19,11 +28,6 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-
-        img {
-          width: 80px;
-          margin-right: 15px;
-        }
 
         p {
           margin-bottom: 0;
@@ -37,7 +41,6 @@
         p span {
           font-weight: normal;
         }
-
       }
     }
   }
@@ -67,6 +70,81 @@
     * {
       color: white;
     }
+  }
 
+  .interact-body {
+    padding: 1.5rem 1rem;
+    border-radius: 10px;
+
+    .col {
+      flex-direction: column;
+    }
+
+    .party {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        margin-bottom: 10px;
+      }
+
+      p.role,
+      p.address {
+        font-weight: bold;
+      }
+      img.you {
+        max-width: 80px;
+      }
+    }
+
+    .transaction {
+      background-color: white;
+      border-radius: 10px;
+      padding: 0.5rem 0.2rem;
+
+      * {
+        color: $defiant-blue;
+      }
+
+      .list-group {
+        text-align: center;
+      }
+
+      .status {
+        font-weight: bold;
+        font-size: 120%;
+        button.update-status {
+          margin-right: 10px;
+          background-color: $defiant-blue;
+          border-radius: 50%;
+          color: white;
+          padding: 12px 15px;
+        }
+      }
+
+      .no-status {
+        margin-top: 10px;
+        // font-weight: normal;
+        font-style: italic;
+        color: $defiant-green;
+      }
+
+      .suggestion {
+        p.title {
+          font-weight: bold;
+        }
+      }
+
+      .powered-by {
+        font-size: 80%;
+        color: gray;
+
+        img.kleros-logo {
+          margin-left: 5px;
+        }
+      }
+    }
   }
 }

@@ -52,6 +52,7 @@
     ]
   },
   "dependencies": {
-    "node-sass": "^4.0.0"
+    "node-sass": "^4.0.0",
+    "react-icons": "^3.11.0"
   }
 }
