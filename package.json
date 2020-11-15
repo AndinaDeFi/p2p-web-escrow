@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Kleros Escrow web for Defiant",
   "main": "index.js",
-  "repository": "https://github.com/kleros/erc-792",
+  "repository": "https://github.com/AndinaDeFi/p2p-web-escrow",
   "author": "Andina DeFi",
   "license": "MIT",
   "private": false,

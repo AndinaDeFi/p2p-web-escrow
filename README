@@ -16,12 +16,17 @@ This web app offers a simple way of interacting with Kleros Escrow system, from 
 - Let the app explain the situation. So you can always know and understand what is happening with your transaction. 
 - Immediately know what party you are thanks to the graphic UI.
 - In case of disputes, submit evidence and see what evidence the other party submitted.
+- You can also use the app to deploy your own escrow contracts.
+
+The web app may very well be used for general purpose, by both parties, to fulfill entire transactions of various kinds. But from the beginning we envisioned it as a complement to Defiant P2P, once we have (hopefully) integrated it. In this way, a user can interact with a transaction using both Defiant and this web app.
 
 ## Implementation comments
 
 We used both **MultipleArbitrableTransactionWithFee** and **MultipleArbitrableTokenTransactionWithFee** contracts as escrow, depending on the type of token being transacted.
 
 In the case of using ERC20, the UI is able to approve the intended amount of tokens necessary for the use of the escrow. 
+
+As we plan to deploy such system in both Ethereum and RSK networks, you may find the terms "native token", "ETH" or "RBTC". The correct one will be used in each case. 
 
 
 ## Running the web app
