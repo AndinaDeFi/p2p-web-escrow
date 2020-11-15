@@ -9,6 +9,19 @@ Defiant is a non-custodial wallet that was born with a P2P marketplace as its ve
 For quite some time already, we've been lookin for a way to secure our users' experience while selling or buying through the P2P marketplace. When we heard of Kleros Escrow, we knew it was ideal for this matter.
 
 ## About web app
+This web app offers a simple way of interacting with Kleros Escrow system, from the web, using Metamask or Nifty wallet. What a user can do with it is:
+- Create transactions in native tokens (ETH, RBTC...) of ERC20 tokens in order to send those funds to a payee, who is supposed to give you something in return. What the payee gives you may be fiat money (as in a P2P marketplace like Defiant's), goods, services, etc.
+- Interact with a transaction in which you are either the payer or the payee.
+- Use the app to find the transactions you are involved in.
+- Let the app explain the situation. So you can always know and understand what is happening with your transaction. 
+- Immediately know what party you are thanks to the graphic UI.
+- In case of disputes, submit evidence and see what evidence the other party submitted.
+
+## Implementation comments
+
+We used both **MultipleArbitrableTransactionWithFee** and **MultipleArbitrableTokenTransactionWithFee** contracts as escrow, depending on the type of token being transacted.
+
+In the case of using ERC20, the UI is able to approve the intended amount of tokens necessary for the use of the escrow. 
 
 
 ## Running the web app
@@ -32,6 +45,7 @@ addr = erc20.address
 ```
 Then, copy the value of _addr_ as a value of _erc20_ in app.js:30 (TO-DO: Automatize in case of extra time).
 
+### Escrow web app (what you are here for)
 For the P2P Web escrow app:
 - Clone this repo.
 - Install the dependencies with _yarn_ or _npm_.
@@ -49,6 +63,18 @@ In the browser:
   - The transaction value (tokens for ERC20, weis for native).
   - Payee's address (in development, you may want to use another address of yours).
   - A title and a description for the transaction. What should you receive in exchange?
+- Once created, you will be able to interact with the the escrow regardin your transaction.
+  - As a payer, you may order the escrow to release the funds to the payee, or reclaim them.
+  - As a payee, you may send the funds back to the payer if you are not able to fulfill the deal. Or you can reclaim if the payer won't release the funds.
+  - If a dispute is raised, you can also submit evidence and check the status of the dispute.
+
+### User journeys
+A transaction may go different ways depending on how the parties act. Please use this mind map to get a view of all possible user journeys: https://whimsical.com/escrow-web-9mDFFjwYfPkwVpYNgodPnE (you will see an old UI. TO-DO: Do a new one with the new interfaces)
+
+# UI
+Part of our team devoted quite some time to re-think once and again how to make it as intuitive as possible to the user to understand how such an escrow system works. A large part of what we learnt during the development of this process is related to this understanding.
+
+Due to time being so tyrant in these events, we could not apply all of the designed UI to the web. You can find the final mockup in final-mockup.pdf. Of course this could be largely improved as well.
 
 # Why we want to get this prize
 Because we've been building Defiant as a solution to real people problems for more than a year already, using only our own funds and some grants we've been awarded. So we would use the prize entirely to afford the integration of Kleros Escrow to our P2P marketplace, which is one of the features that both ourselves and our users have been expecting and asking for during months.
