@@ -128,22 +128,28 @@ class NewTransaction extends React.Component {
     } = this.state;
 
     return (
-      <Container className="new-transaction">
-        <Card className="my-4 text-center " style={{ width: "auto" }}>
-          <Card.Body>
-            <Card.Title>New Transaction</Card.Title>
-            <Form>
-              <Form.Group controlId="coin">
-                <Form.Control
-                  as="select"
-                  defaultValue="rbtc"
-                  onChange={this.onCoinChange}
-                >
-                  <option value="rbtc">Native token</option>
-                  <option value="erc20">ERC20 token</option>
-                </Form.Control>
-              </Form.Group>
+      <Container className="menu-container">
+        <Form>
+          <div className="coin">Choose token</div>
+          <Form.Group controlId="coin">
+            <Form.Control
+              as="select"
+              defaultValue="rbtc"
+              onChange={this.onCoinChange}
+            >
+              <option value="rbtc">RBTC</option>
+              <option value="erc20">ERC20 token</option>
+            </Form.Control>
+          </Form.Group>
+        </Form>
 
+        <Card
+          className="my-4 text-center new-transaction"
+          style={{ width: "auto" }}
+        >
+          <Card.Body>
+            <Form>
+              <Card.Title>New Transaction</Card.Title>
               {coin !== "rbtc" && (
                 <Card className="text-center my-4 erc20-approve">
                   <Card.Title>
@@ -180,7 +186,7 @@ class NewTransaction extends React.Component {
                   rows="1"
                   value={amount}
                   onChange={this.onAmountChange}
-                  placeholder={"Transaction amount (in weis for Native)"}
+                  placeholder={"Transaction amount (in weis for RBTC)"}
                   label="Value"
                 />
               </Form.Group>

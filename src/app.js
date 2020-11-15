@@ -291,7 +291,7 @@ class App extends React.Component {
                 {coin == "rbtc" ? (
                   <div>
                     <Card.Body>
-                      <Card.Title>Native Token Escrow</Card.Title>
+                      <Card.Title>RBTC Escrow</Card.Title>
                       <div className="find">
                         <Button
                           type="submit"
