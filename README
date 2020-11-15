@@ -12,11 +12,25 @@ For quite some time already, we've been lookin for a way to secure our users' ex
 
 
 ## Running the web app
+
+### Arbitrator
 In order to experience the whole user journey, you will need an arbitrator. We used the Centralized Arbitrator provided by Kleros (https://github.com/kleros/centralized-arbitrator-dashboard). You can clone it, install the dependencies and use it right away.
 
 With it, you can run it and deploy a centralized arbitrator contract, which is necessary for the Escrow web app. You only need to set up the arbitration price users will need to pay in order to reclaim a transaction. Take into account that the address with which you deploy the arbitrator contract will have ruling capabilities, i.e. will be able to decide who wins a dispute.
 
 Once you have deployed the arbitrator, check _app.js_ for the arbitrator address. In case it is not the same, please replace the address with the one of the arbitrator you just deployed _(to-do if we had some more time)_.
+
+### ERC20
+You will also need one ERC20 token contract with which to interact. In order to deploy one, you can use _truffle_:
+```
+truffle console
+```
+Ans in truffle console:
+```
+erc20 = await ERC20Mock.new(accounts[0], 1000000)
+addr = erc20.address
+```
+Then, copy the value of _addr_ as a value of _erc20_ in app.js:30 (TO-DO: Automatize in case of extra time).
 
 For the P2P Web escrow app:
 - Clone this repo.
