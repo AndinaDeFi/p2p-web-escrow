@@ -271,7 +271,7 @@ class App extends React.Component {
             <h1>ESCROW WEB APP</h1>
           </div>
           <h2>
-            {activeAddress != "0x0000000000000000000000000000000000000000"
+            {activeAddress === "0x0000000000000000000000000000000000000000"
               ? "Connect wallet"
               : activeAddress}
           </h2>
@@ -292,7 +292,34 @@ class App extends React.Component {
                   <div>
                     <Card.Body>
                       <Card.Title>Native Token Escrow</Card.Title>
+                      <div className="find">
+                        <Button
+                          type="submit"
+                          variant="success"
+                          onClick={this.getUserTransEscrowTransactions}
+                        >
+                          Find my transactions
+                        </Button>
+                        {transacEscrowTransactions !== null &&
+                          transacEscrowTransactions.length > 0 && (
+                            <div style={{ marginTop: "1.5rem" }}>
+                              <p>Your transactions with this escrow are:</p>
+                              {transacEscrowTransactions.map((transac) => (
+                                <Button
+                                  className="mx-2"
+                                  onClick={this.setActiveTransactionID}
+                                  value={transac.toString()}
+                                  escrow_type="transaction"
+                                  variant="success"
+                                >
+                                  {transac.toString()}
+                                </Button>
+                              ))}
+                            </div>
+                          )}
+                      </div>
                       <p>
+                        No escrow contract yet?
                         <Button
                           type="submit"
                           variant="outline-dark"
@@ -317,37 +344,40 @@ class App extends React.Component {
                           variant="info"
                         >{`Deployed at: ${transacEscrowAddress}`}</Badge>
                       </p>
-                      <Button
-                        type="submit"
-                        variant="outline-success"
-                        onClick={this.getUserTransEscrowTransactions}
-                      >
-                        Find my transactions
-                      </Button>
-                      {transacEscrowTransactions !== null &&
-                        transacEscrowTransactions.length > 0 && (
-                          <div style={{ marginTop: "1.5rem" }}>
-                            <p>Your transactions with this escrow are:</p>
-                            {transacEscrowTransactions.map((transac) => (
-                              <Button
-                                className="mx-2"
-                                onClick={this.setActiveTransactionID}
-                                value={transac.toString()}
-                                escrow_type="transaction"
-                                variant="success"
-                              >
-                                {transac.toString()}
-                              </Button>
-                            ))}
-                          </div>
-                        )}
                     </Card.Body>
                   </div>
                 ) : (
                   <div>
                     <Card.Body>
                       <Card.Title>ERC20 Token Escrow</Card.Title>
+                      <div className="find">
+                        <Button
+                          type="submit"
+                          variant="outline-success"
+                          onClick={this.getUserTokenEscrowTransactions}
+                        >
+                          Find my transactions
+                        </Button>
+                        {tokenEscrowTransactions !== null &&
+                          tokenEscrowTransactions.length > 0 && (
+                            <div style={{ marginTop: "1.5rem" }}>
+                              <p>Your transactions with this escrow are:</p>
+                              {tokenEscrowTransactions.map((transac) => (
+                                <Button
+                                  className="mx-2"
+                                  onClick={this.setActiveTransactionID}
+                                  value={transac.toString()}
+                                  escrow_type="token"
+                                  variant="success"
+                                >
+                                  {transac.toString()}
+                                </Button>
+                              ))}
+                            </div>
+                          )}
+                      </div>
                       <p>
+                        No escrow contract yet?
                         <Button
                           type="submit"
                           variant="outline-dark"
@@ -372,30 +402,6 @@ class App extends React.Component {
                           variant="info"
                         >{`Deployed at: ${tokenEscrowAddress}`}</Badge>
                       </p>
-                      <Button
-                        type="submit"
-                        variant="outline-success"
-                        onClick={this.getUserTokenEscrowTransactions}
-                      >
-                        Find my transactions
-                      </Button>
-                      {tokenEscrowTransactions !== null &&
-                        tokenEscrowTransactions.length > 0 && (
-                          <div style={{ marginTop: "1.5rem" }}>
-                            <p>Your transactions with this escrow are:</p>
-                            {tokenEscrowTransactions.map((transac) => (
-                              <Button
-                                className="mx-2"
-                                onClick={this.setActiveTransactionID}
-                                value={transac.toString()}
-                                escrow_type="token"
-                                variant="success"
-                              >
-                                {transac.toString()}
-                              </Button>
-                            ))}
-                          </div>
-                        )}
                     </Card.Body>
                   </div>
                 )}

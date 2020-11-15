@@ -139,8 +139,8 @@ class NewTransaction extends React.Component {
                   defaultValue="rbtc"
                   onChange={this.onCoinChange}
                 >
-                  <option value="rbtc">Native</option>
-                  <option value="erc20">ERC20</option>
+                  <option value="rbtc">Native token</option>
+                  <option value="erc20">ERC20 token</option>
                 </Form.Control>
               </Form.Group>
 

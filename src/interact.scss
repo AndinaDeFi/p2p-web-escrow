@@ -17,6 +17,7 @@
       border: 1px solid $defiant-green;
       border-radius: 10px;
       font-weight: bold;
+      justify-content: center;
 
       img {
         margin-right: 15px;
@@ -94,6 +95,7 @@
       p.address {
         font-weight: bold;
       }
+
       img.you {
         max-width: 80px;
       }
@@ -115,10 +117,12 @@
       .status {
         font-weight: bold;
         font-size: 120%;
+
         button.update-status {
           margin-right: 10px;
-          background-color: $defiant-blue;
+          background-color: $defiant-green;
           border-radius: 50%;
+          border-width: 0;
           color: white;
           padding: 12px 15px;
         }
@@ -147,4 +151,11 @@
       }
     }
   }
+}
+
+.escrow-interaction {
+  .find {
+    margin-bottom: 8rem;
+  }
+
 }

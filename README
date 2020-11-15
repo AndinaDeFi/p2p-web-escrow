@@ -8,5 +8,35 @@ Defiant is a non-custodial wallet that was born with a P2P marketplace as its ve
 
 For quite some time already, we've been lookin for a way to secure our users' experience while selling or buying through the P2P marketplace. When we heard of Kleros Escrow, we knew it was ideal for this matter.
 
+## About web app
+
+
+## Running the web app
+In order to experience the whole user journey, you will need an arbitrator. We used the Centralized Arbitrator provided by Kleros (https://github.com/kleros/centralized-arbitrator-dashboard). You can clone it, install the dependencies and use it right away.
+
+With it, you can run it and deploy a centralized arbitrator contract, which is necessary for the Escrow web app. You only need to set up the arbitration price users will need to pay in order to reclaim a transaction. Take into account that the address with which you deploy the arbitrator contract will have ruling capabilities, i.e. will be able to decide who wins a dispute.
+
+Once you have deployed the arbitrator, check _app.js_ for the arbitrator address. In case it is not the same, please replace the address with the one of the arbitrator you just deployed _(to-do if we had some more time)_.
+
+For the P2P Web escrow app:
+- Clone this repo.
+- Install the dependencies with _yarn_ or _npm_.
+- Run a _ganache_ or _ganache-cli_ instance.
+- Run `yarn start`.
+
+In the browser:
+- Open Metamask or Nifty wallet.
+- Make sure you got it configured to use your local Ganache instance.
+- If you are running it for the first time, you can deploy escrows of the type you need (either for native tokens, or for ERC20 tokens). This would be something you would not need to do as a user, normally. These escrow contracts would already be deployed.
+- If you have already deployed them, you can input the corresponding address in the left side panel, in order to interact with that escrow.
+- If you have already created a transaction, you can use the "Find my transactions" button to get your transactions on that escrow, both you being the payer or the payee.
+- When you are creating a transaction, you will need to input:
+  - The token you want to utilize (native or ERC20).
+  - The transaction value (tokens for ERC20, weis for native).
+  - Payee's address (in development, you may want to use another address of yours).
+  - A title and a description for the transaction. What should you receive in exchange?
+
 # Why we want to get this prize
 Because we've been building Defiant as a solution to real people problems for more than a year already, using only our own funds and some grants we've been awarded. So we would use the prize entirely to afford the integration of Kleros Escrow to our P2P marketplace, which is one of the features that both ourselves and our users have been expecting and asking for during months.
+
+Anyway, it was a nice experience participating, we learnt a lot, and we will try to integrate the Escrow feature nonetheless. So kudos to all and thanks for such enriching event!

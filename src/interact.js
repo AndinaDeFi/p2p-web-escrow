@@ -725,7 +725,7 @@ class Interact extends React.Component {
                               Date.now() < feeDepositLimit)) && (
                             <Button
                               className="mr-2"
-                              variant="success"
+                              variant="danger"
                               type="button"
                               onClick={this.onReclaimBySenderFundsButtonClick}
                             >
@@ -928,7 +928,7 @@ class Interact extends React.Component {
                             Date.now() < feeDepositLimit)) && (
                           <Button
                             className="mr-2"
-                            variant="success"
+                            variant="danger"
                             type="button"
                             onClick={this.onReclaimBySenderFundsButtonClick}
                           >
@@ -947,8 +947,6 @@ class Interact extends React.Component {
                             Get funds
                           </Button>
                         )}
-                    </ButtonGroup>
-                    <ButtonGroup className="mt-3" style={{ width: "100%" }}>
                       {activeAddress === payee.toLowerCase() &&
                         (parseInt(status) === 0 ||
                           (parseInt(status) === 2 &&

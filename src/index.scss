@@ -54,3 +54,8 @@ div.logo {
     margin-left: 20px;
   }
 }
+
+.address,
+.suggestion li {
+  overflow-wrap: anywhere;
+}
