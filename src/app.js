@@ -297,8 +297,9 @@ class App extends React.Component {
                           type="submit"
                           variant="success"
                           onClick={this.getUserTransEscrowTransactions}
+                          className="find-btn"
                         >
-                          Find my transactions
+                          FIND MY TRANSACTIONS
                         </Button>
                         {transacEscrowTransactions !== null &&
                           transacEscrowTransactions.length > 0 && (
@@ -355,8 +356,9 @@ class App extends React.Component {
                           type="submit"
                           variant="outline-success"
                           onClick={this.getUserTokenEscrowTransactions}
+                          className="find-btn"
                         >
-                          Find my transactions
+                          FIND MY TRANSACTIONS
                         </Button>
                         {tokenEscrowTransactions !== null &&
                           tokenEscrowTransactions.length > 0 && (

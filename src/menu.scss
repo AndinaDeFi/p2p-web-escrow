@@ -9,7 +9,6 @@
 
   .escrow-interaction {
     .badge {
-
       white-space: normal;
     }
   }
@@ -57,4 +56,25 @@
       }
     }
   }
+}
+
+.escrow-interaction {
+  .card-title {
+    color: $defiant-blue;
+    font-weight: bold;
+  }
+
+  .find {
+    margin-bottom: 8rem;
+  }
+
+  button {
+    &.find-btn {
+      background-color: $defiant-green;
+      color: $defiant-blue;
+      font-weight: bold;
+
+    }
+  }
+
 }
