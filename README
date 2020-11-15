@@ -8,6 +8,8 @@ Defiant is a non-custodial wallet that was born with a P2P marketplace as its ve
 
 For quite some time already, we've been lookin for a way to secure our users' experience while selling or buying through the P2P marketplace. When we heard of Kleros Escrow, we knew it was ideal for this matter.
 
+We have been working on it for some time. In case you want to see how we envision it, you can check it out: https://docs.google.com/presentation/d/1ue7UNHD0aj5qg4wW-5qiRvNxQTkoAp0JV2ABlJy4uf8/edit?usp=sharing. Of course it just serves to understand the possible user journeys within the app.
+
 ## About web app
 This web app offers a simple way of interacting with Kleros Escrow system, from the web, using Metamask or Nifty wallet. What a user can do with it is:
 - Create transactions in native tokens (ETH, RBTC...) of ERC20 tokens in order to send those funds to a payee, who is supposed to give you something in return. What the payee gives you may be fiat money (as in a P2P marketplace like Defiant's), goods, services, etc.
