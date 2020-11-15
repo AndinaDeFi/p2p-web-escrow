@@ -21,6 +21,8 @@ import Card from "react-bootstrap/Card";
 import NewTransaction from "./new-transaction.js";
 import Interact from "./interact.js";
 
+import logo from "./logo.png"; // Tell webpack this JS file uses this image
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -263,6 +265,87 @@ class App extends React.Component {
     } = this.state;
     return (
       <Container>
+        <Row className="header">
+          <div class="logo">
+            <img src={logo} />
+            <h1>ESCROW WEB APP</h1>
+          </div>
+          <h2>Connect wallet</h2>
+        </Row>{" "}
+        <Row>
+          <Col xs={4} className="menu">
+            <div>
+              <Button
+                type="submit"
+                variant="outline-success"
+                onClick={this.getUserTransEscrowTransactions}
+              >
+                Find my transactions
+              </Button>
+              {transacEscrowTransactions !== null &&
+                transacEscrowTransactions.length > 0 && (
+                  <div style={{ marginTop: "1.5rem" }}>
+                    <p>Your transactions with this escrow are:</p>
+                    {transacEscrowTransactions.map((transac) => (
+                      <Button
+                        className="mx-2"
+                        onClick={this.setActiveTransactionID}
+                        value={transac.toString()}
+                        escrow_type="transaction"
+                        variant="success"
+                      >
+                        {transac.toString()}
+                      </Button>
+                    ))}
+                  </div>
+                )}
+            </div>
+            <div>
+              <Button
+                type="submit"
+                variant="outline-success"
+                onClick={this.getUserTokenEscrowTransactions}
+              >
+                Find my transactions
+              </Button>
+              {tokenEscrowTransactions !== null &&
+                tokenEscrowTransactions.length > 0 && (
+                  <div style={{ marginTop: "1.5rem" }}>
+                    <p>Your transactions with this escrow are:</p>
+                    {tokenEscrowTransactions.map((transac) => (
+                      <Button
+                        className="mx-2"
+                        onClick={this.setActiveTransactionID}
+                        value={transac.toString()}
+                        escrow_type="token"
+                        variant="success"
+                      >
+                        {transac.toString()}
+                      </Button>
+                    ))}
+                  </div>
+                )}
+            </div>
+            <NewTransaction
+              newTransactionCallback={this.newTransaction}
+              coinChangeCallback={this.coinChange}
+              defaultPayee={defaultPayee}
+              activeAddress={activeAddress}
+              tokenEscrowAddress={tokenEscrowAddress}
+              tokenAddresses={this.tokenAddresses}
+            />{" "}
+          </Col>{" "}
+          <Col>
+            <Interact
+              activeAddress={activeAddress}
+              tokenEscrowAddress={tokenEscrowAddress}
+              transacEscrowAddress={transacEscrowAddress}
+              transactionID={lastTransactionID}
+              tokenAddresses={this.tokenAddresses}
+              coin={coin}
+            />{" "}
+          </Col>{" "}
+        </Row>{" "}
         <Row style={{ marginBottom: "20px" }}>
           <Col>
             <h1 className="text-center my-5">Escrow dapp</h1>{" "}
@@ -380,28 +463,6 @@ class App extends React.Component {
                 </Card>
               </Col>
             </Row>
-          </Col>{" "}
-        </Row>{" "}
-        <Row>
-          <Col>
-            <NewTransaction
-              newTransactionCallback={this.newTransaction}
-              coinChangeCallback={this.coinChange}
-              defaultPayee={defaultPayee}
-              activeAddress={activeAddress}
-              tokenEscrowAddress={tokenEscrowAddress}
-              tokenAddresses={this.tokenAddresses}
-            />{" "}
-          </Col>{" "}
-          <Col>
-            <Interact
-              activeAddress={activeAddress}
-              tokenEscrowAddress={tokenEscrowAddress}
-              transacEscrowAddress={transacEscrowAddress}
-              transactionID={lastTransactionID}
-              tokenAddresses={this.tokenAddresses}
-              coin={coin}
-            />{" "}
           </Col>{" "}
         </Row>{" "}
       </Container>

@@ -1,0 +1,9 @@
+# P2P Web Escrow
+
+This project was conceibed for Kleros Hackathon 2020, by a group of Open Justice lovers that also love (and build) an app called Defiant.
+
+Defiant is a non-custodial wallet that was born with a P2P marketplace as its very heart. Nowadays it has plenty more features, but the P2P is an important one for us. But many of our users are still reluctant to use the P2P. They are missing something. Entering: Kleros Escrow.  
+
+## An Escrow for a P2P Marketplace
+
+For quite some time already, we've been lookin for a way to secure our users' experience while selling or buying through the P2P marketplace. When we heard of Kleros Escrow, we knew it was ideal for this matter.

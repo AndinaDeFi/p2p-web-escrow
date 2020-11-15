@@ -128,7 +128,7 @@ class NewTransaction extends React.Component {
     } = this.state;
 
     return (
-      <Container>
+      <Container className="new-transaction">
         <Card className="my-4 text-center " style={{ width: "auto" }}>
           <Card.Body>
             <Card.Title>New Transaction</Card.Title>
@@ -223,7 +223,7 @@ class NewTransaction extends React.Component {
                 onClick={this.onDeployButtonClick}
                 block
               >
-                Create new transaction
+                CREATE TRANSACTION
               </Button>
             </Form>
           </Card.Body>
