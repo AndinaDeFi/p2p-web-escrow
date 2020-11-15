@@ -270,70 +270,137 @@ class App extends React.Component {
             <img src={logo} />
             <h1>ESCROW WEB APP</h1>
           </div>
-          <h2>Connect wallet</h2>
+          <h2>
+            {activeAddress != "0x0000000000000000000000000000000000000000"
+              ? "Connect wallet"
+              : activeAddress}
+          </h2>
         </Row>{" "}
         <Row>
           <Col xs={4} className="menu">
-            <div>
-              <Button
-                type="submit"
-                variant="outline-success"
-                onClick={this.getUserTransEscrowTransactions}
-              >
-                Find my transactions
-              </Button>
-              {transacEscrowTransactions !== null &&
-                transacEscrowTransactions.length > 0 && (
-                  <div style={{ marginTop: "1.5rem" }}>
-                    <p>Your transactions with this escrow are:</p>
-                    {transacEscrowTransactions.map((transac) => (
+            <Col>
+              <NewTransaction
+                newTransactionCallback={this.newTransaction}
+                coinChangeCallback={this.coinChange}
+                defaultPayee={defaultPayee}
+                activeAddress={activeAddress}
+                tokenEscrowAddress={tokenEscrowAddress}
+                tokenAddresses={this.tokenAddresses}
+              />{" "}
+              <Card className="h-100 my-4 text-center escrow-interaction">
+                {coin == "rbtc" ? (
+                  <div>
+                    <Card.Body>
+                      <Card.Title>Native Token Escrow</Card.Title>
+                      <p>
+                        <Button
+                          type="submit"
+                          variant="outline-dark"
+                          onClick={this.onDeployTransacEscrowClick}
+                        >
+                          Deploy new contract{" "}
+                        </Button>{" "}
+                      </p>{" "}
+                      <Form.Group controlId="transac-escrow-address">
+                        <Form.Control
+                          className="text-center"
+                          as="input"
+                          rows="1"
+                          value={transacEscrowAddress}
+                          onChange={this.onTransacEscrowAddressChange}
+                        />
+                      </Form.Group>
+                      <p>
+                        <Badge
+                          className="m-1"
+                          pill
+                          variant="info"
+                        >{`Deployed at: ${transacEscrowAddress}`}</Badge>
+                      </p>
                       <Button
-                        className="mx-2"
-                        onClick={this.setActiveTransactionID}
-                        value={transac.toString()}
-                        escrow_type="transaction"
-                        variant="success"
+                        type="submit"
+                        variant="outline-success"
+                        onClick={this.getUserTransEscrowTransactions}
                       >
-                        {transac.toString()}
+                        Find my transactions
                       </Button>
-                    ))}
+                      {transacEscrowTransactions !== null &&
+                        transacEscrowTransactions.length > 0 && (
+                          <div style={{ marginTop: "1.5rem" }}>
+                            <p>Your transactions with this escrow are:</p>
+                            {transacEscrowTransactions.map((transac) => (
+                              <Button
+                                className="mx-2"
+                                onClick={this.setActiveTransactionID}
+                                value={transac.toString()}
+                                escrow_type="transaction"
+                                variant="success"
+                              >
+                                {transac.toString()}
+                              </Button>
+                            ))}
+                          </div>
+                        )}
+                    </Card.Body>
+                  </div>
+                ) : (
+                  <div>
+                    <Card.Body>
+                      <Card.Title>ERC20 Token Escrow</Card.Title>
+                      <p>
+                        <Button
+                          type="submit"
+                          variant="outline-dark"
+                          onClick={this.onDeployTokenEscrowClick}
+                        >
+                          Deploy new contract{" "}
+                        </Button>{" "}
+                      </p>{" "}
+                      <Form.Group controlId="token-escrow-address">
+                        <Form.Control
+                          className="text-center"
+                          as="input"
+                          rows="1"
+                          value={tokenEscrowAddress}
+                          onChange={this.onTokenEscrowAddressChange}
+                        />
+                      </Form.Group>
+                      <p>
+                        <Badge
+                          className="m-1"
+                          pill
+                          variant="info"
+                        >{`Deployed at: ${tokenEscrowAddress}`}</Badge>
+                      </p>
+                      <Button
+                        type="submit"
+                        variant="outline-success"
+                        onClick={this.getUserTokenEscrowTransactions}
+                      >
+                        Find my transactions
+                      </Button>
+                      {tokenEscrowTransactions !== null &&
+                        tokenEscrowTransactions.length > 0 && (
+                          <div style={{ marginTop: "1.5rem" }}>
+                            <p>Your transactions with this escrow are:</p>
+                            {tokenEscrowTransactions.map((transac) => (
+                              <Button
+                                className="mx-2"
+                                onClick={this.setActiveTransactionID}
+                                value={transac.toString()}
+                                escrow_type="token"
+                                variant="success"
+                              >
+                                {transac.toString()}
+                              </Button>
+                            ))}
+                          </div>
+                        )}
+                    </Card.Body>
                   </div>
                 )}
-            </div>
-            <div>
-              <Button
-                type="submit"
-                variant="outline-success"
-                onClick={this.getUserTokenEscrowTransactions}
-              >
-                Find my transactions
-              </Button>
-              {tokenEscrowTransactions !== null &&
-                tokenEscrowTransactions.length > 0 && (
-                  <div style={{ marginTop: "1.5rem" }}>
-                    <p>Your transactions with this escrow are:</p>
-                    {tokenEscrowTransactions.map((transac) => (
-                      <Button
-                        className="mx-2"
-                        onClick={this.setActiveTransactionID}
-                        value={transac.toString()}
-                        escrow_type="token"
-                        variant="success"
-                      >
-                        {transac.toString()}
-                      </Button>
-                    ))}
-                  </div>
-                )}
-            </div>
-            <NewTransaction
-              newTransactionCallback={this.newTransaction}
-              coinChangeCallback={this.coinChange}
-              defaultPayee={defaultPayee}
-              activeAddress={activeAddress}
-              tokenEscrowAddress={tokenEscrowAddress}
-              tokenAddresses={this.tokenAddresses}
-            />{" "}
+              </Card>
+            </Col>
           </Col>{" "}
           <Col>
             <Interact
@@ -344,125 +411,6 @@ class App extends React.Component {
               tokenAddresses={this.tokenAddresses}
               coin={coin}
             />{" "}
-          </Col>{" "}
-        </Row>{" "}
-        <Row style={{ marginBottom: "20px" }}>
-          <Col>
-            <h1 className="text-center my-5">Escrow dapp</h1>{" "}
-            <Row>
-              <Col>
-                <Card className="h-100 my-4 text-center">
-                  <Card.Body>
-                    <Card.Title>Native token Escrow</Card.Title>
-                    <p>
-                      <Button
-                        type="submit"
-                        variant="outline-dark"
-                        onClick={this.onDeployTransacEscrowClick}
-                      >
-                        Deploy new contract{" "}
-                      </Button>{" "}
-                    </p>{" "}
-                    <Form.Group controlId="transac-escrow-address">
-                      <Form.Control
-                        className="text-center"
-                        as="input"
-                        rows="1"
-                        value={transacEscrowAddress}
-                        onChange={this.onTransacEscrowAddressChange}
-                      />
-                    </Form.Group>
-                    <p>
-                      <Badge
-                        className="m-1"
-                        pill
-                        variant="info"
-                      >{`Deployed at: ${transacEscrowAddress}`}</Badge>
-                    </p>
-                    <Button
-                      type="submit"
-                      variant="outline-success"
-                      onClick={this.getUserTransEscrowTransactions}
-                    >
-                      Find my transactions
-                    </Button>
-                    {transacEscrowTransactions !== null &&
-                      transacEscrowTransactions.length > 0 && (
-                        <div style={{ marginTop: "1.5rem" }}>
-                          <p>Your transactions with this escrow are:</p>
-                          {transacEscrowTransactions.map((transac) => (
-                            <Button
-                              className="mx-2"
-                              onClick={this.setActiveTransactionID}
-                              value={transac.toString()}
-                              escrow_type="transaction"
-                              variant="success"
-                            >
-                              {transac.toString()}
-                            </Button>
-                          ))}
-                        </div>
-                      )}
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col>
-                <Card className="h-100 my-4 text-center">
-                  <Card.Body>
-                    <Card.Title>ERC20 Token Escrow</Card.Title>
-                    <p>
-                      <Button
-                        type="submit"
-                        variant="outline-dark"
-                        onClick={this.onDeployTokenEscrowClick}
-                      >
-                        Deploy new contract{" "}
-                      </Button>{" "}
-                    </p>{" "}
-                    <Form.Group controlId="token-escrow-address">
-                      <Form.Control
-                        className="text-center"
-                        as="input"
-                        rows="1"
-                        value={tokenEscrowAddress}
-                        onChange={this.onTokenEscrowAddressChange}
-                      />
-                    </Form.Group>
-                    <p>
-                      <Badge
-                        className="m-1"
-                        pill
-                        variant="info"
-                      >{`Deployed at: ${tokenEscrowAddress}`}</Badge>
-                    </p>
-                    <Button
-                      type="submit"
-                      variant="outline-success"
-                      onClick={this.getUserTokenEscrowTransactions}
-                    >
-                      Find my transactions
-                    </Button>
-                    {tokenEscrowTransactions !== null &&
-                      tokenEscrowTransactions.length > 0 && (
-                        <div style={{ marginTop: "1.5rem" }}>
-                          <p>Your transactions with this escrow are:</p>
-                          {tokenEscrowTransactions.map((transac) => (
-                            <Button
-                              className="mx-2"
-                              onClick={this.setActiveTransactionID}
-                              value={transac.toString()}
-                              escrow_type="token"
-                              variant="success"
-                            >
-                              {transac.toString()}
-                            </Button>
-                          ))}
-                        </div>
-                      )}
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row>
           </Col>{" "}
         </Row>{" "}
       </Container>

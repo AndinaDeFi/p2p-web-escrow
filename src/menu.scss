@@ -7,6 +7,13 @@
   padding: 1.5rem;
   margin-top: 5vh;
 
+  .escrow-interaction {
+    .badge {
+
+      white-space: normal;
+    }
+  }
+
   .new-transaction {
     background-color: $defiant-blue;
     border-radius: 10px;
@@ -32,6 +39,22 @@
     button {
       background-color: $defiant-green;
       font-weight: bold;
+    }
+
+    .erc20-approve {
+      background-color: $defiant-green;
+      padding-top: 10px;
+      color: $defiant-blue;
+
+      .card-title {
+        color: $defiant-blue;
+        margin-bottom: 10px;
+      }
+
+      button {
+        background-color: white;
+        margin-left: 5px;
+      }
     }
   }
 }

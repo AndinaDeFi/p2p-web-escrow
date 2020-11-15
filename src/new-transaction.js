@@ -105,7 +105,7 @@ class NewTransaction extends React.Component {
       tokenAddress,
     } = this.state;
     if (coin === "rbtc") {
-      console.log("Impossible to approve for RBTC");
+      console.log("Impossible to approve for Native");
       return;
     }
     await ERC20.approve(
@@ -139,16 +139,14 @@ class NewTransaction extends React.Component {
                   defaultValue="rbtc"
                   onChange={this.onCoinChange}
                 >
-                  <option value="rbtc">RBTC</option>
+                  <option value="rbtc">Native</option>
                   <option value="erc20">ERC20</option>
                 </Form.Control>
               </Form.Group>
 
               {coin !== "rbtc" && (
-                <Card className="text-center my-4">
-                  <Card.Title
-                    style={{ marginBottom: "0", fontStyle: "italic" }}
-                  >
+                <Card className="text-center my-4 erc20-approve">
+                  <Card.Title>
                     {`${allowedAmount} ${coin.toUpperCase()} approved to transfer.`}
                   </Card.Title>
                   <Card.Subtitle>Need to approve more?</Card.Subtitle>
@@ -182,7 +180,7 @@ class NewTransaction extends React.Component {
                   rows="1"
                   value={amount}
                   onChange={this.onAmountChange}
-                  placeholder={"Transaction amount (in weis for RBTC)"}
+                  placeholder={"Transaction amount (in weis for Native)"}
                   label="Value"
                 />
               </Form.Group>

@@ -827,6 +827,13 @@ class Interact extends React.Component {
             </Col>
           </Row>
         </Container>
+        <Evidences
+          arbitratorAddress={arbitrator}
+          arbitrableAddress={escrowAddress}
+          disputeID={disputeID}
+          payer={payer}
+          payee={payee}
+        />
 
         <Card
           className="h-100 my-4 text-center interact-card"
@@ -1049,13 +1056,6 @@ class Interact extends React.Component {
             </Badge>
           </Card.Body>
         </Card>
-        <Evidences
-          arbitratorAddress={arbitrator}
-          arbitrableAddress={escrowAddress}
-          disputeID={disputeID}
-          payer={payer}
-          payee={payee}
-        />
       </Container>
     );
   }
