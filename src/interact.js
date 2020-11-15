@@ -4,6 +4,8 @@ import generateEvidence from "./ethereum/generate-evidence";
 
 import React from "react";
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
@@ -36,6 +38,7 @@ class Interact extends React.Component {
       payer: "Unassigned",
       payee: "Unassigned",
       value: "Unassigned",
+      title: "Some title",
       arbitrationCost: 0,
       timeoutPayment: 0,
       feeTimeout: 0,
@@ -574,6 +577,7 @@ class Interact extends React.Component {
       timeoutPayment,
       feeTimeout,
       lastInteraction,
+      title,
       activeAddress,
       candidateTransactionID,
       disputeID,
@@ -607,8 +611,49 @@ class Interact extends React.Component {
     window.escrowAddress = escrowAddress;
 
     return (
-      <Container className="container-fluid d-flex h-100 flex-column">
-        <Card className="h-100 my-4 text-center" style={{ width: "auto" }}>
+      <Container className="container-fluid d-flex h-100 flex-column interact">
+        <h3>
+          Interact with{" "}
+          {coin === "rbtc" ? "Native token Escrow" : "ERC20 Token Escrow"}
+        </h3>
+        <Container className="interact-div">
+          <Row className="interact-header">
+            <Col>
+              <div className="value">
+                <img src="escrow.svg" />
+                <div>
+                  <p>
+                    <span>Value</span>
+                  </p>
+                  <p className="amount">
+                    {value}
+                    {coin === "rbtc" ? " (wei) " : " "}
+                    {coin.toUpperCase()}
+                  </p>
+                  <p className="title">
+                    <span>Title: </span>
+                    {title}
+                  </p>
+                </div>
+              </div>
+            </Col>
+            <Col>
+              <div className="arbitrator">
+                <img src="arbit.svg" />
+                <div>
+                  <p>
+                    <span>Arbitrator</span>
+                  </p>
+                  <p className="address">{arbitrator}</p>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+        <Card
+          className="h-100 my-4 text-center interact-card"
+          style={{ width: "auto" }}
+        >
           <Card.Body>
             <Card.Title>
               Interact with{" "}

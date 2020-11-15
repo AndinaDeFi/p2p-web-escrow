@@ -27,9 +27,14 @@ h3 {
 }
 
 div.container {
+  @media (min-width: 992px) {
+    max-width: 88vw;
+  }
+
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
 div.row.header {
   justify-content: space-between;
   align-items: center;
@@ -39,10 +44,12 @@ div.logo {
   max-width: 260px;
   display: flex;
   align-items: center;
+
   img {
     border-right: 2px solid #0f516a;
     max-width: 100px;
   }
+
   h1 {
     margin-left: 20px;
   }
